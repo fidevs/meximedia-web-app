@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.navbar-admin {
+    background-color: #242424;
+}
+
+.navbar button {
+    background-color: #242424;
+    border: none;
+}
+/*------SIDEBAR-------*/
+.mysidebar {
+    position: fixed;
+    max-width: 200px;
+    min-width: 200px;
+    height: 100vh;
+    -webkit-box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
+}
+
+/*-------SIDEBAR-HEADER---------*/
+.img-profile-admin {
+    width: 50px;
+}
+
+.fa-user-cog {
+    color: #000000;
+}
+.fa-user-cog:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.sid-header span {
+    font-family: 'Roboto', sans-serif;
+}
+
+.admin-name span {
+    font-size: 14px;
+}
+
+.admin-role span {
+    font-size: 12px;
+}
+
+
+/*-------SIDEBAR-SEARCH---------*/
+.line {
+    color: white;
+}
+
+.side-search input {
+    background: #242424;
+    background-color: #242424;
+    border: none;
+}
+
+
+/*------MENU-------*/
+.side-menu {
+    min-width: 100%;
+}
+
+.menu {
+    min-width: 100%;
+}
+
+.menu-item a {
+    cursor: pointer;
+}
+
+.menu-item a span {
+    color: #ffffff;
+}
+
+.menu-item a:hover>span {
+    color: #c5c5c5;
+    transition: all 400ms;
+}
+
+.icons-menu, .icons-menu-l {
+    line-height: 24px;
+    color: rgb(0, 119, 255);
+    transition: all 500ms;
+}
+
+.menu-item a span:hover>.icons-menu-l {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+    color: #0004ff;
+}
+
+.menu-item a span:hover>.icons-menu {
+    color: #0004ff;
+}
+
+
+/*-------SUMBMENUS-------*/
+.submenus {
+    background: #242424;
+    transition: all 400ms;
+    display: none;
+}
+
+.submenus li {
+    list-style: none;
+}
+
+.submenus li a {
+    text-decoration: none;
+}
+
+.submenus li a span .icons-menu-l {
+    transition: all 500ms;
+}
+
+.submenus li a span:hover>.icons-menu-l {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*------ACTIVE-----*/
+.active {
+    display: block;
+}
+
+.active .icons-menu {
+    transition: all 400ms;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+.display {
+    margin-left: 200px;
+}

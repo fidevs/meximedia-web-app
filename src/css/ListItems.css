@@ -1,0 +1,9 @@
+.lists-items a.item-list {
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-list-items {
+    border-right: 1px solid #000000;
+}

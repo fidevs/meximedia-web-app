@@ -1,0 +1,77 @@
+.container-options-roles .content .content-header .header-options i {
+    color: #8a8a8a;
+}
+
+.container-options-roles .content .content-header .header-options i.actives {
+    color: #000000;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.container-options-roles .content .content-header .header-options i.actives:hover {
+    color: #ffffff;
+}
+
+.container-options-roles .content .content-header .header-options i.actives:active {
+    color: #7cdaff;
+}
+
+.container-options-roles .content .content-header .header-options i.delete {
+    color: #ce0000;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.container-options-roles .content .content-header .header-options i.delete:hover {
+    color: #ff0000;
+}
+
+.container-options-roles .content .content-header .header-options i.delete:active {
+    color: #880000;
+}
+
+.container-options-roles .content .permissions-list {
+    max-width: 200px;
+}
+
+.container-options-roles .content .permissions-list .list-group-item i.add {
+    color: rgb(25, 0, 255);
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.container-options-roles .content .permissions-list .list-group-item i.add:hover {
+    color: rgb(15, 0, 153);
+}
+
+.container-options-roles .content .permissions-list .list-group-item i.add:active {
+    color: rgb(255, 255, 255);
+}
+
+.container-options-roles .content .permissions-list .list-group-item {
+    padding-left: 5px;
+}
+
+.container-options-roles .content .role-select-content {
+    max-width: 300px;
+}
+
+.container-options-roles .content .role-select-content .table-permissions-role .table tbody {
+    font-size: 12px;
+}
+
+.container-options-roles .content .form-control-plaintext {
+    height: 22px;
+    padding-left: 5px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.container-options-roles .content .permissions-list .active i {
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.container-options-roles .content .permissions-list .active i:active {
+    color: #000000;
+}

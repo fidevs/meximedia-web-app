@@ -1,0 +1,23 @@
+.header-roles .options i {
+    color: rgb(179, 179, 179);
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.header-roles .options i:hover {
+    color: #ffffff;
+}
+
+.header-roles .options i:active {
+    color: #b8b8b8;
+}
+
+.container-roles-main {
+    max-height: 500px;
+}
+
+.content-roles {
+    max-width: 600px;
+    min-width: 600px;
+    height: auto;
+}

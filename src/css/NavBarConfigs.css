@@ -1,0 +1,13 @@
+.nav-options .options i {
+    color: rgb(153, 153, 153);
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.nav-options .options i:hover {
+    color: rgb(197, 197, 197);
+}
+
+.nav-options .options i:active {
+    color: #ffffff;
+}

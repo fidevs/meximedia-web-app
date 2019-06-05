@@ -1,0 +1,7 @@
+.roles-descriptions-list .table tbody tr td .close {
+    color: #e20000;
+}
+
+.roles-descriptions-list .table tbody tr td .close:active {
+    font-size: 20px;
+}

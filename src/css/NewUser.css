@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.box-register {
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.400);
+    -webkit-box-shadow: 0px 0px 23px 9px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px 0px 23px 9px rgba(0,0,0,0.59);
+    box-shadow: 0px 0px 23px 9px rgba(0,0,0,0.59);
+}
+
+.box-register h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-group small {
+    color: #ffffff;
+}
+
+.form-control {
+    min-width: 50px;
+}
