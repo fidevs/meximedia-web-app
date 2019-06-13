@@ -1,0 +1,18 @@
+.list-group .list-group-item.permission-item {
+    max-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-group .list-group-item.permission-item small i {
+    cursor: pointer;
+    color: #0ea500;
+}
+
+.list-group .list-group-item.permission-item small i:hover {
+    color: #12da00;
+}
+
+.list-group .list-group-item.permission-item small i:active {
+    color: #075000;
+}

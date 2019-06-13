@@ -1,0 +1,56 @@
+.row-table.exist {
+    cursor: pointer;
+    background: #00b90a;
+    transition: .5s;
+}
+
+.row-table.exist:hover {
+    background: #007506;
+}
+
+.row-table {
+    cursor: pointer;
+    background: #ff0000;
+    transition: .5s;
+}
+
+.row-table:hover {
+    background: #a80000;    
+}
+
+.col-table-row {
+    padding: 0;
+    padding-left: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 23px;
+}
+
+.col-table-row.col-1s {
+    min-width: 20%;
+    max-width: 20%;
+    border-right: 1px solid;
+}
+.col-table-row.col-2s {
+    min-width: 30%;
+    max-width: 30%;
+    border-right: 1px solid;
+}
+
+.col-table-row.col-3s {
+    min-width: 12%;
+    max-width: 12%;
+    border-right: 1px solid;
+}
+
+.col-table-row.col-4s {
+    min-width: 18%;
+    max-width: 18%;
+    border-right: 1px solid;
+}
+
+.col-table-row.col-5s {
+    min-width: 20%;
+    max-width: 20%;
+}

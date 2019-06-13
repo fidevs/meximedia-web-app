@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+.text-nowrap {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.sidebar {
+    background: #161616;
+    font-family: 'Titillium Web', sans-serif;
+    min-width: 35px;
+    max-width: 35px;
+    transition-property: min-width;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+}
+
+.sidebar-active {
+    min-width: 200px;
+    height: 100vh;
+}
+
+.toggle-btn {
+    cursor: pointer;
+    padding-top: 12px;
+}
+
+.sidebar .toggle-btn .hamburger {
+    width: 20px;
+    height: 3px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: .3s;
+    position: absolute;
+}
+
+.hamburger:before,
+.hamburger:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: .3s;
+}
+
+.hamburger:before {
+    top: -7px;
+}
+
+.hamburger:after {
+    top: 7px;
+}
+
+.sidebar.sidebar-active .hamburger {
+    background: rgba(0, 0, 0, 0);
+}
+
+.sidebar.sidebar-active .hamburger:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.sidebar.sidebar-active .hamburger:after {
+    transform: rotate(135deg);
+    top: 0;
+}
+
+/*---------SIDEBAR - HEADER----------*/
+.sidebar.sidebar-active .sidebar-header {
+    height: 60px;
+    background: #646464;
+    padding: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.sidebar.sidebar-active .sidebar-header .data-profile p {
+    display: block;
+}
+
+.sidebar .sidebar-header .data-profile p {
+    display: none;
+}
+
+.sidebar .sidebar-header {
+    max-width: 192px;
+    height: 30px;
+    background: #646464;
+    padding: 0px;
+    padding-left: 3px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+
+/*---------SIDEBAR - MENU----------*/
+.sidebar .menu .list-menu li {
+    cursor: pointer;
+    margin-bottom: 3px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #646464;
+    transition: .5s;
+}
+
+.sidebar .menu .list-menu li:hover {
+    border-bottom: 1px solid #ffffff;
+}
+
+.sidebar .menu .list-menu li:hover > h5 {
+    color: #8f8f8f;
+}
+
+.sidebar .menu .list-menu li:hover > .icon-list {
+    color: rgb(0, 162, 255);
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.sidebar .menu .list-menu li h5 {
+    font-size: 1.2em;
+    transition: .5s;
+}
+
+.sidebar .menu .list-menu li .icon-list {
+    min-width: 20px;
+    display: flex;
+    align-content: center;
+    margin-right: 10px;
+    color: rgb(126, 126, 126);
+    transition: .5s;
+}
