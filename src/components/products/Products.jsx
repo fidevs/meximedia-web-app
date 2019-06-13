@@ -3,44 +3,44 @@ import ListProducts from './ListProducts'
 import ProductForm from './ProductsForm'
 import NavBarConfigs from '../NavBarConfigs'
 import { types } from '../../lib/constants'
-import { findAll, deleteById } from '../../services/my-api'
+import { findAll } from '../../services/my-api'
 import $ from 'jquery'
-import ModalConfirm from '../ModalConfirm'
+import ModalConfirm from '../mymodals/ModalConfirm'
 
 export default class Products extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      textNav : "Todos los productos", companyid : null, wareid : null, view : "list",
-      products : [], productSel : null, idProd : null
+      textNav : "Todos los productos", companyid : null, wareid : "897e7772-38b7-4c6c-b453-3da9eb209de7", view : "list",
+      products : [], productSel : null, idProd : null, filter : "name"
     }
 
     this.createNewProduct = this.createNewProduct.bind(this)
     this.handleSelectProduct = this.handleSelectProduct.bind(this)
-    this.handleDeleteProduct = this.handleDeleteProduct.bind(this)
+    this.handleChangeFilter = this.handleChangeFilter.bind(this)
+    this.handleChangeSearch = this.handleChangeSearch.bind(this)
+  }
+
+  handleChangeSearch(e){
+    if (e.target.value === "") {
+      this.getAllProducts(this.props.company, this.props.ware)
+    }else if(this.state.filter !== ""){
+      let type = types.PRODUCTS.replace("$X", this.props.company)
+      type = type.replace("$Z", this.props.ware)
+      type = type + "/search/"+this.state.filter+"/"+e.target.value
+      findAll(type).then(res => this.setState({products : res.data}))
+      .catch(er => console.log(er))
+    }
+  }
+
+  handleChangeFilter(e) {
+    this.setState({filter : e.target.value})
   }
 
   closeForm = () => {
     this.refresh()
     this.setState({view : "list"})
-  }
-
-  deleteProduct = () =>{
-    let type = types.PRODUCTS.replace("$X", this.state.companyid)
-    const { products, idProd } =this.state
-    type = type.replace("$Z", this.state.wareid)
-    deleteById(type, products[idProd].uid).then(res => {
-      console.log(res.data)
-      this.refresh()
-    })
-    .catch(err => console.log(err))
-  }
-
-  handleDeleteProduct(e) {
-    const id = e.target.id
-    this.setState({idProd : id})
-    $('#mymodalconfirm').modal('show')
   }
 
   handleSelectProduct(e) {
@@ -65,17 +65,22 @@ export default class Products extends Component {
     this.setState({view : "new"})
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({companyid : nextProps.company})
+    this.getAllProducts(nextProps.company, this.state.wareid)
+  }
+
   componentDidMount() {
-    const { match: { params } } = this.props
-    this.setState({companyid:params.companyid, wareid:params.wareid})
-    this.getAllProducts(params.companyid, params.wareid)
+    this.setState({companyid : this.props.company})
+    this.getAllProducts(this.props.company, this.state.wareid)
+    $('#mymodalconfirm').appendTo('body')
   }
 
 
   render() {
       return (
         <div>
-          <NavBarConfigs title="Productos" display="d-none" dSave="d-none" textState={this.state.textNav}
+          <NavBarConfigs title={this.props.title} display="d-none" dSave="d-none" textState={this.state.textNav}
             onClickNew={this.createNewProduct} onClickRefresh={this.refresh} />
 
           <ModalConfirm title="Eliminar producto"
@@ -86,7 +91,8 @@ export default class Products extends Component {
               this.state.view === "list" ?
                 (
                   <ListProducts products={this.state.products} selectRow={this.handleSelectProduct}
-                  delete={this.handleDeleteProduct} />
+                    delete={this.handleDeleteProduct} changeFilter={this.handleChangeFilter}
+                    changeSearch={this.handleChangeSearch} filter={this.state.filter} />
                 ) :
                 (
                   <ProductForm action={this.state.view} product={this.state.productSel} 

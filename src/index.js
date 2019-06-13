@@ -5,10 +5,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
 
-import 'popper.js/dist/popper.min.js';
-import 'bootstrap';
+import 'popper.js/dist/popper.min.js'
+import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'simplebar/dist/simplebar.min.css';
+import 'simplebar/dist/simplebar.min.css'
+import "react-datepicker/dist/react-datepicker.css"
 
 ReactDOM.render( <BrowserRouter> <App /> </BrowserRouter>, document.getElementById('root'));
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { findAll, create, update } from '../../services/my-api';
 import { types } from '../../lib/constants';
-import MultiImages from '../MyModalMultiImages'
+import MultiImages from '../mymodals/MyModalMultiImages'
 import $ from 'jquery'
 
 export default class ProductsForm extends Component {
@@ -13,7 +13,7 @@ export default class ProductsForm extends Component {
         uid:null, name:"", sku:"", quantity:0, purchasePrice:0,
         salePrice:0, brand:{uid:""}, images:[], taxes:[]
       },
-      brands : []
+      brands : [], alertMessage : "", dOptions : "" , alertType:"primary"
     }
 
     this.handleChangeBrand = this.handleChangeBrand.bind(this)
@@ -27,20 +27,41 @@ export default class ProductsForm extends Component {
     }})
   }
 
+  formIsValid = () =>{
+    const {product} = this.state
+    if(product.name !== ""){
+      return true
+    }else {
+      return false
+    }
+  }
+
   saveChanges = () =>{
-    let type = types.PRODUCTS.replace("$X", this.props.company)
-    type = type.replace("$Z", this.props.ware)
-    if(this.props.action === "new") {
-      create(type, this.state.product)
-      .then(res =>{
-        console.log(res.data)
-        this.cleanForm()
-      }).catch(err => console.log(err))
-    }else if(this.props.action === "show") {
-      update(type, this.state.product.uid, this.state.product).then(res =>{
-        console.log(res.data)
-        this.props.close()
-      }).catch(err => console.log(err))
+    if(this.formIsValid()) {
+      this.setState({dOptions : "d-none"})
+      let type = types.PRODUCTS.replace("$X", this.props.company)
+      type = type.replace("$Z", this.props.ware)
+      if(this.props.action === "new") {
+        create(type, this.state.product)
+        .then(res =>{
+          console.log(res.data)
+          this.setState({dOptions : "", alertMessage: "¡El producto se creo correctamente!", alertType : "success"})
+          this.cleanForm()
+        }).catch(err => {
+          console.log(err)
+          this.setState({dOptions : "", alertMessage: "¡Ocurrio un error con el registro!", alertType : "danger"})
+        })
+      }else if(this.props.action === "show") {
+        update(type, this.state.product.uid, this.state.product).then(res =>{
+          console.log(res.data)
+          this.setState({dOptions : "", alertMessage: "¡El producto fue actualizado correctamente!", alertType : "success"})
+        }).catch(err => {
+          console.log(err)
+          this.setState({dOptions : "", alertMessage: "¡Ocurrio un error en la actualización!", alertType : "danger"})
+        })
+      }
+    }else{
+      this.setState({dOptions : "", alertMessage: "Asegurate de llenar los campos requeridos", alertType : "danger"})
     }
   }
 
@@ -81,6 +102,19 @@ export default class ProductsForm extends Component {
     .catch(err => console.log(err))
   }
 
+  closeAlert = () =>{
+    this.setState({alertMessage : ""})
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.action === "new") {
+      this.cleanForm()
+    } else if(nextProps.action === "show"){
+      this.setState({product : nextProps.product})
+    }
+    this.getAllBrands()
+  }
+
   componentDidMount() {
     if(this.props.action === "new") {
       this.cleanForm()
@@ -88,33 +122,53 @@ export default class ProductsForm extends Component {
       this.setState({product : this.props.product})
     }
     this.getAllBrands()
+    $('#mymodalmultiimages').appendTo('body')
   }
 
 
   render() {
     return (
       <div className="m-auto">
-        <div className="form-products-container border rounded shadow w-50 m-auto">
+        <div className="form-products-container bg-light border rounded shadow w-50 m-auto">
           <div className="product-title px-1 d-flex flex-inline justify-content-between">
             {
               this.props.action === "show" ? <h5>Datos del producto</h5> : <h5>Registrar nuevo producto</h5>
             }
             <div className="title-options">
-              <i className="fas fa-save fa-lg mt-1 text-primary"
+            {
+              this.state.dOptions === "d-none" ? 
+              (
+                <div className="spinner-border spinner-border-sm text-secondary mr-2" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              ) : null
+            }
+              <i className={"fas fa-save fa-lg mt-1 text-primary "+this.state.dOptions}
                 style={{cursor:'pointer'}} onClick={this.saveChanges}></i>
-              <i className="fas fa-times fa-lg mt-1 text-danger ml-2"
+              <i className={"fas fa-times fa-lg mt-1 text-danger ml-2 "+this.state.dOptions}
                 style={{cursor:'pointer'}} onClick={this.props.close}></i>
             </div>
           </div>
           <hr className="m-0 text-dark mb-1"/>
           <div className="products-body">
 
+            {
+              this.state.alertMessage === "" ? null :
+              (
+                <div className={"alert alert-"+this.state.alertType+" alert-dismissible fade show p-0"} role="alert">
+                  <strong>{this.state.alertMessage}</strong>
+                  <button type="button" className="close m-0 p-0" aria-label="Close" onClick={this.closeAlert}>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              )
+            }
 
             <div className="row px-2">
 
               <div className="col-sm-6">
                 <div className="form-group">
-                  <label for="name" className="m-0">Nombre</label>
+                  <label for="name" className="m-0">Nombre <strong className="text-danger">*</strong></label>
                   <input name="name" type="text" className="form-control form-control-sm" id="name"
                     onChange={this.handleChangeInputs} placeholder="Nombre del producto" value={this.state.product.name} />
                 </div>
@@ -162,8 +216,8 @@ export default class ProductsForm extends Component {
 
               <div className="col-sm-6">
                 <div className="form-group">
-                  <label for="name" className="m-0">Marca</label>
-                  <select value={this.state.product.brand.uid} class="form-control form-control-sm"
+                  <label for="name" className="m-0">Marca <strong className="text-danger">*</strong></label>
+                  <select value={this.state.product.brand.uid} className="form-control form-control-sm"
                     onChange={this.handleChangeBrand}>
                     <option value="">Selecciona una opción</option>
                     {

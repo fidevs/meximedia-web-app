@@ -16,7 +16,8 @@ export const types =
     PRODUCTS : '/company/$X/warehouse/$Z/products',
     SALES : '/sales',
     USERS : '/users',
-    COMPANY_ADDRESS : '/company/$X/address'
+    COMPANY_ADDRESS : '/company/$X/address',
+    LOGIN : '/users/login/$X/$Z'
 }
 
 export const methods =

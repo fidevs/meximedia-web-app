@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import $ from 'jquery'
-import Roles from '../components/Roles'
-import Modules from '..//components/Modules'
-import Companies from '../components/Companies'
-import Warehouses from '../components/warehouses/Warehouses'
+import Roles from '../components/admin/roles/Roles'
+import Modules from '..//components/admin/modules/Modules'
+import Companies from '../components/admin/companies/Companies'
+import Warehouses from '../components/admin/warehouses/Warehouses'
 import Products from '../components/products/Products'
-import Sales from '../components/sales/Sales'
 
 import '../css/Admin.css';
 
@@ -32,6 +31,11 @@ export default class Admin extends Component {
     $("#"+id).toggleClass("active");
   }
 
+  closeSession= () =>{
+    localStorage.removeItem("user")
+    this.props.history.push("/index")
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +45,7 @@ export default class Admin extends Component {
           </Link>
           <div className="controls-nav">
             <button type="button" className="btn btn-dark ml-2" >Página</button>
-            <button type="button" className="btn btn-dark ml-2" >Salir</button>
+            <button type="button" className="btn btn-dark ml-2" onClick={this.closeSession} >Salir</button>
           </div>
         </nav>
 
@@ -141,8 +145,6 @@ export default class Admin extends Component {
             <Route exact path="/admin/companies" component={Companies} />
             <Route exact path="/admin/company/:companyid/warehouses/" component={Warehouses} />
             <Route exact path="/admin/company/:companyid/warehouses/:wareid/products" component={Products} />
-            <Route exact path="/admin/company/b6a68ee9-0d3e-4561-8bd4-0211ea2c5672/warehouses/897e7772-38b7-4c6c-b453-3da9eb209de7/sales"
-              component={Sales} />
           </div>
       </div>
     )

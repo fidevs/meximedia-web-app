@@ -10,10 +10,6 @@ function requests(url, method, data) {
     })
 }
 
-
-
-
-
 /* -------------- Delete ----------- */
 export function deleteById(type, id) {
     const method = methods.DELETE

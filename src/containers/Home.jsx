@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import Slogan from '../components/Slogan.jsx';
-import Descriptions from '../components/Descriptions.jsx';
-import HomeMain from '../components/HomeMain.jsx';
+import Slogan from '../components/home/Slogan';
+import Descriptions from '../components/home/Descriptions';
+import HomeMain from '../components/home/HomeMain';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import NewUser from '../components/NewUser'
-import Login from '../components/Login'
+import NewUser from '../components/home/NewUser'
+import Login from '../components/home/Login'
 
 const arrayDesc = [
   {
-    title: "Titulo de info 1",
+    title: "Calidad",
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe nam atque rerum.",
     imgroute: "img/icons/icon_shopping_cart.png"
   },
   {
-    title: "Titulo de info 2",
+    title: "Puntualidad",
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe nam atque rerum.",
     imgroute: "img/icons/icon_shopping_cart.png"
   },
   {
-    title: "Titulo de info 3",
+    title: "El mejor servicio",
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe nam atque rerum.",
     imgroute: "img/icons/icon_shopping_cart.png"
   }
@@ -40,9 +40,9 @@ export default class Home extends Component {
       <div>
         <Router>
           <HomeMain name="AppName">
-            <Route exact path="/" component={compHome} />
-            <Route exact path="/signup" component={NewUser} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/index" component={compHome} />
+            <Route exact path="/index/signup" component={NewUser} />
+            <Route exact path="/index/login" component={Login} />
           </HomeMain>
         </Router>
       </div>
