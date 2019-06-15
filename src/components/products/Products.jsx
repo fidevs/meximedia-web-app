@@ -12,7 +12,7 @@ export default class Products extends Component {
     super(props)
 
     this.state = {
-      textNav : "Todos los productos", companyid : null, wareid : "897e7772-38b7-4c6c-b453-3da9eb209de7", view : "list",
+      textNav : "Todos los productos", companyid : null, wareid : "ab45404c-a037-4ba1-a153-aaa6528f85c5", view : "list",
       products : [], productSel : null, idProd : null, filter : "name"
     }
 

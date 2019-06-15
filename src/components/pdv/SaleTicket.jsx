@@ -32,12 +32,12 @@ export default class SaleTicket extends Component {
     .then(res => this.setState({company : res.data}))
     .catch(err => console.log(err))
 
-    findById(types.COMPANY_ADDRESS.replace("$X", sale.tenantUid), "964c9ccc-5795-468d-976a-8507a55058a7")
+    findById(types.COMPANY_ADDRESS.replace("$X", sale.tenantUid), "e8c96075-6a94-4f21-8948-224858f3226a")
     .then(res => this.setState({address : res.data}))
     .catch(err => console.log(err))
 
-    let type = types.PRODUCTS.replace("$X", "b6a68ee9-0d3e-4561-8bd4-0211ea2c5672")
-    type = type.replace("$Z", "897e7772-38b7-4c6c-b453-3da9eb209de7")
+    let type = types.PRODUCTS.replace("$X", "40414a8c-94a9-4130-a50d-627653b10a6a")
+    type = type.replace("$Z", "ab45404c-a037-4ba1-a153-aaa6528f85c5")
     findAll(type).then(res => this.setState({products : res.data}))
     .catch(err => console.log(err))
   }

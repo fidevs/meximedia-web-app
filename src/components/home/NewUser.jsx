@@ -35,7 +35,7 @@ export default class NewUser extends Component {
       password : this.state.pass,
       active : false,
       userRoleId : "usr-new-role-uid",
-      tenantId : "",
+      tenantId : "40414a8c-94a9-4130-a50d-627653b10a6a",
       createdDate : null,
       profile : {
         uid : null,

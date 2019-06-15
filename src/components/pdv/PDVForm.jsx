@@ -12,7 +12,7 @@ import { types } from '../../lib/constants'
 
 import '../../css/pdv/list_products.css'
 
-const NEW_HISTORY = {uid:null, dateCreated:null, createdBy:"5ffd38a6-5512-4fd9-9470-0210be711a2b", description:"New Sale"}
+const NEW_HISTORY = {uid:null, dateCreated:null, createdBy:"e97aaa0c-ae85-4d6f-ad44-a11d292d3d34", description:"New Sale"}
 
 export default class PDVForm extends Component {
   constructor(props){
@@ -20,10 +20,10 @@ export default class PDVForm extends Component {
 
     this.state = {products:[], filter : "", productSel : null, detailToEdit : null, action : "new", viewBtn : "d-none",
       sale : {
-        uid:null, dateCreate:"", createdBy:"5ffd38a6-5512-4fd9-9470-0210be711a2b", partialAmount:0, discount:0, total:0,
+        uid:null, dateCreate:"", createdBy:"e97aaa0c-ae85-4d6f-ad44-a11d292d3d34", partialAmount:0, discount:0, total:0,
         totalTaxes:0, totalRetentions:0, totalLocalTaxes:0, totalLocalRetentions:0, isInvoiced:false,
-        state:"Vendida", tenantUid:"b6a68ee9-0d3e-4561-8bd4-0211ea2c5672", companyAddressUid:"783a807b-b1ed-4fc9-a903-40dc3703cbce",
-        customerUid:"user-uid-customer",
+        state:"Vendida", tenantUid:"b6a68ee9-0d3e-4561-8bd4-0211ea2c5672", companyAddressUid:"e8c96075-6a94-4f21-8948-224858f3226a",
+        customerUid:"2b25be77-b54a-4fc7-b863-87b1f3c80c76",
         saleDetail:[], saleHistory:[]
       }, stateSale : "waiting", total : 0, saleTicket : null
     }

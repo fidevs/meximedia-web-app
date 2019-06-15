@@ -14,8 +14,8 @@ export default class SaleDetail extends Component {
   }
 
   componentDidMount() {
-    let type = types.PRODUCTS.replace("$X", "b6a68ee9-0d3e-4561-8bd4-0211ea2c5672")
-    type = type.replace("$Z", "897e7772-38b7-4c6c-b453-3da9eb209de7")
+    let type = types.PRODUCTS.replace("$X", "40414a8c-94a9-4130-a50d-627653b10a6a")
+    type = type.replace("$Z", "ab45404c-a037-4ba1-a153-aaa6528f85c5")
     this.props.details.forEach(detail => {
       findById(type, detail.productUid).then(res =>{
         let {detail} = this.state
