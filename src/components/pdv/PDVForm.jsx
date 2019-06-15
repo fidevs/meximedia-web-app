@@ -22,7 +22,7 @@ export default class PDVForm extends Component {
       sale : {
         uid:null, dateCreate:"", createdBy:"e97aaa0c-ae85-4d6f-ad44-a11d292d3d34", partialAmount:0, discount:0, total:0,
         totalTaxes:0, totalRetentions:0, totalLocalTaxes:0, totalLocalRetentions:0, isInvoiced:false,
-        state:"Vendida", tenantUid:"b6a68ee9-0d3e-4561-8bd4-0211ea2c5672", companyAddressUid:"e8c96075-6a94-4f21-8948-224858f3226a",
+        state:"Vendida", tenantUid:"40414a8c-94a9-4130-a50d-627653b10a6a", companyAddressUid:"e8c96075-6a94-4f21-8948-224858f3226a",
         customerUid:"2b25be77-b54a-4fc7-b863-87b1f3c80c76",
         saleDetail:[], saleHistory:[]
       }, stateSale : "waiting", total : 0, saleTicket : null
