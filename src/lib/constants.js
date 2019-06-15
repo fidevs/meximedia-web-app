@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const myaxios = axios.create({
-    baseURL: 'http://localhost:8080/'
+    baseURL: 'https://ws-pdv.herokuapp.com/'
 })
 
 export const types = 
