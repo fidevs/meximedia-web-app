@@ -45,8 +45,9 @@ export default class Products extends Component {
 
   handleSelectProduct(e) {
     const id = e.target.id
-    const products = this.state.products
-    this.setState({productSel : products[id], view : "show"})
+    this.setState((state) =>{
+      return {productSel : state.products[id], view : "show"}
+    })
   }
 
   getAllProducts = (id, uid) =>{

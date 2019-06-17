@@ -104,16 +104,7 @@ export default class ProductsForm extends Component {
 
   closeAlert = () =>{
     this.setState({alertMessage : ""})
-  }
-
-  componentWillReceiveProps(nextProps){
-    if(nextProps.action === "new") {
-      this.cleanForm()
-    } else if(nextProps.action === "show"){
-      this.setState({product : nextProps.product})
-    }
-    this.getAllBrands()
-  }
+  }  
 
   componentDidMount() {
     if(this.props.action === "new") {
@@ -164,83 +155,91 @@ export default class ProductsForm extends Component {
               )
             }
 
-            <div className="row px-2">
+            {
+              this.state.product.uid && this.state.product.uid !== null ?
+              (
+                <div>
+                  <div className="row px-2">
 
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label for="name" className="m-0">Nombre <strong className="text-danger">*</strong></label>
-                  <input name="name" type="text" className="form-control form-control-sm" id="name"
-                    onChange={this.handleChangeInputs} placeholder="Nombre del producto" value={this.state.product.name} />
+                    <div className="col-sm-6">
+                      <div className="form-group">
+                        <label for="name" className="m-0">Nombre <strong className="text-danger">*</strong></label>
+                        <input name="name" type="text" className="form-control form-control-sm" id="name"
+                          onChange={this.handleChangeInputs} placeholder="Nombre del producto" value={this.state.product.name} />
+                      </div>
+                    </div>
+                    
+                    <div className="col-sm-6">
+                      <div className="form-group">
+                        <label for="code" className="m-0">SKU</label>
+                        <input name="sku" type="text" className="form-control form-control-sm" id="code"
+                          onChange={this.handleChangeInputs} placeholder="Código del producto" value={this.state.product.sku} />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className="row px-2">
+
+                    <div className="col-sm-4">
+                      <div className="form-group">
+                        <label for="quant" className="m-0">Cantidad</label>
+                        <input name="quantity" type="number" className="form-control form-control-sm" id="quant"
+                          onChange={this.handleChangeInputs} value={this.state.product.quantity} />
+                      </div>
+                    </div>
+
+                    <div className="col-sm-4">
+                      <div className="form-group">
+                        <label for="purchase" className="m-0">$ compra</label>
+                        <input name="purchasePrice" type="number" className="form-control form-control-sm" id="purchase"
+                          onChange={this.handleChangeInputs} value={this.state.product.purchasePrice} />
+                      </div>
+                    </div>
+                    
+                    <div className="col-sm-4">
+                      <div className="form-group">
+                        <label for="sale" className="m-0">$ venta</label>
+                        <input name="salePrice" type="number" className="form-control form-control-sm" id="sale"
+                          onChange={this.handleChangeInputs} value={this.state.product.salePrice} />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className="row px-2">
+
+                    <div className="col-sm-6">
+                      <div className="form-group">
+                        <label for="name" className="m-0">Marca <strong className="text-danger">*</strong></label>
+                        <select value={this.state.product.brand.uid} className="form-control form-control-sm"
+                          onChange={this.handleChangeBrand}>
+                          <option value="">Selecciona una opción</option>
+                          {
+                            this.state.brands.length >= 1 ? 
+                            (
+                              this.state.brands.map((brand, i) =>{
+                                return <option key={i} value={brand.uid}>{brand.name}</option>
+                              })
+                            ) : null
+                          }
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div className="col-sm-6">
+                      <div className="form-group">
+                        <label for="code" className="m-0">Imagenes</label>
+                        <button type="button" className="btn btn-sm btn-block btn-warning" onClick={this.viewImages}>
+                          Administrar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label for="code" className="m-0">SKU</label>
-                  <input name="sku" type="text" className="form-control form-control-sm" id="code"
-                    onChange={this.handleChangeInputs} placeholder="Código del producto" value={this.state.product.sku} />
-                </div>
-              </div>
-            </div>
-
-
-            <div className="row px-2">
-
-              <div className="col-sm-4">
-                <div className="form-group">
-                  <label for="quant" className="m-0">Cantidad</label>
-                  <input name="quantity" type="number" className="form-control form-control-sm" id="quant"
-                    onChange={this.handleChangeInputs} value={this.state.product.quantity} />
-                </div>
-              </div>
-
-              <div className="col-sm-4">
-                <div className="form-group">
-                  <label for="purchase" className="m-0">$ compra</label>
-                  <input name="purchasePrice" type="number" className="form-control form-control-sm" id="purchase"
-                    onChange={this.handleChangeInputs} value={this.state.product.purchasePrice} />
-                </div>
-              </div>
-              
-              <div className="col-sm-4">
-                <div className="form-group">
-                  <label for="sale" className="m-0">$ venta</label>
-                  <input name="salePrice" type="number" className="form-control form-control-sm" id="sale"
-                    onChange={this.handleChangeInputs} value={this.state.product.salePrice} />
-                </div>
-              </div>
-            </div>
-
-
-            <div className="row px-2">
-
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label for="name" className="m-0">Marca <strong className="text-danger">*</strong></label>
-                  <select value={this.state.product.brand.uid} className="form-control form-control-sm"
-                    onChange={this.handleChangeBrand}>
-                    <option value="">Selecciona una opción</option>
-                    {
-                      this.state.brands.length >= 1 ? 
-                      (
-                        this.state.brands.map((brand, i) =>{
-                          return <option value={brand.uid}>{brand.name}</option>
-                        })
-                      ) : null
-                    }
-                  </select>
-                </div>
-              </div>
-              
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label for="code" className="m-0">Imagenes</label>
-                  <button type="button" className="btn btn-sm btn-block btn-warning" onClick={this.viewImages}>
-                    Administrar
-                  </button>
-                </div>
-              </div>
-            </div>
+              ) : null
+            }
+            
           </div>
         </div>
 

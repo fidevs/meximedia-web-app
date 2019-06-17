@@ -118,7 +118,7 @@ function ImagePreview(props) {
   if(props.image.content && props.image.content !== "") {
     return <img
       src={"data:"+props.image.contentType+";base64,"+props.image.content}
-      alt="Image invalide" width="290px" height="140px" className="m-auto" style={{objectFit:'contain'}} />
+      alt="data not found" width="290px" height="140px" className="m-auto" style={{objectFit:'contain'}} />
   }else {
     return <h1 className="text-center">Imágen no disponible</h1>
   }

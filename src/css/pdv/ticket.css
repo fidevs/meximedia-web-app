@@ -1,0 +1,10 @@
+
+
+@media print{
+    div:not(.ticket_media_print){
+        display: none !important;
+    }
+    .btnPRINT {
+        display: none;
+    }
+}
