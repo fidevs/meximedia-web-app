@@ -15,7 +15,7 @@ export default function ListItems(props) {
                   id={i}
                   key={i}
                   className="item-list d-block bg-primary w-100 text-white p-1 pl-2 border-bottom"
-                  href="#"
+                  href="#/"
                   onClick={props.clickSelect}>
                     {item.name}
                 </a>

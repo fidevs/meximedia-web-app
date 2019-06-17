@@ -124,17 +124,17 @@ function CardWarehouses(props) {
             <div className="card-footer p-0 m-2">
               <div className="row justify-content-center">
                 <div className="colsm-4">
-                  <button id={i} role="button" className="btn btn-sm btn-outline-dark py-0" onClick={props.show}>
+                  <button id={i} type="button" className="btn btn-sm btn-outline-dark py-0" onClick={props.show}>
                     <i id={i} className="fas fa-eye"></i>
                   </button>
                 </div>
                 <div className="colsm-4">
-                  <button id={i} role="button" className="btn btn-sm btn-outline-success py-0" onClick={props.products}>
+                  <button id={i} type="button" className="btn btn-sm btn-outline-success py-0" onClick={props.products}>
                     <i id={i} className="fas fa-layer-group"></i>
                   </button>
                 </div>
                 <div className="colsm-4">
-                  <button id={i} role="button" className="btn btn-sm btn-outline-danger py-0" onClick={props.delete}>
+                  <button id={i} type="button" className="btn btn-sm btn-outline-danger py-0" onClick={props.delete}>
                     <i id={i} className="fas fa-trash"></i>
                   </button>
                 </div>
