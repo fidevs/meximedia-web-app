@@ -141,7 +141,7 @@ export default class SaleTicket extends Component {
                   <tr>
                     <th></th>
                     <th></th>
-                    <th colspan="2">
+                    <th colSpan="2">
                       <small className="t_table_total">
                         <strong>Total: {this.state.sale ? "$"+this.state.sale.total : "$"}</strong>
                       </small>

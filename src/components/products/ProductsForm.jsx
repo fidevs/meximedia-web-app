@@ -13,7 +13,8 @@ export default class ProductsForm extends Component {
         uid:null, name:"", sku:"", quantity:0, purchasePrice:0,
         salePrice:0, brand:{uid:""}, images:[], taxes:[]
       },
-      brands : [], alertMessage : "", dOptions : "" , alertType:"primary"
+      brands : [], alertMessage : "", dOptions : "" , alertType:"primary",
+      images : [], viewImages : false
     }
 
     this.handleChangeBrand = this.handleChangeBrand.bind(this)
@@ -87,13 +88,15 @@ export default class ProductsForm extends Component {
   }
 
   getImages = (images) =>{
-    let product = this.state.product
+    let {product} = this.state
     product.images = images
-    this.setState({product : product})
+    this.setState({product : product, images : [], viewImages : false})
   }
 
   viewImages = () =>{
-    $('#mymodalmultiimages').modal('show')
+    this.setState((state) =>{
+      return{images : state.product.images, viewImages : true}
+    })
   }
 
   getAllBrands = () => {
@@ -122,14 +125,14 @@ export default class ProductsForm extends Component {
       this.setState({product : this.props.product})
     }
     this.getAllBrands()
-    $('#mymodalmultiimages').appendTo('body')
   }
 
 
   render() {
+    const product = this.state.product
     return (
-      <div className="m-auto">
-        <div className="form-products-container bg-light border rounded shadow w-50 m-auto">
+      <div className="m-auto d-flex flex-inline">
+        <div className="form-products-container bg-light border rounded shadow w-50 m-auto mr-2">
           <div className="product-title px-1 d-flex flex-inline justify-content-between">
             {
               this.props.action === "show" ? <h5>Datos del producto</h5> : <h5>Registrar nuevo producto</h5>
@@ -172,8 +175,8 @@ export default class ProductsForm extends Component {
                   <input name="name" type="text" className="form-control form-control-sm" id="name"
                     onChange={this.handleChangeInputs} placeholder="Nombre del producto"
                     value={
-                      this.state.product && this.state.product.name !== null ?
-                      (this.state.product.name) : ""
+                      product && product.name !== null ?
+                      (product.name) : ""
                     } />
                 </div>
               </div>
@@ -182,7 +185,10 @@ export default class ProductsForm extends Component {
                 <div className="form-group">
                   <label for="code" className="m-0">SKU</label>
                   <input name="sku" type="text" className="form-control form-control-sm" id="code"
-                    onChange={this.handleChangeInputs} placeholder="Código del producto" value={this.state.product.sku} />
+                    onChange={this.handleChangeInputs} placeholder="Código del producto"
+                      value={
+                        product && product.sku ? product.sku : ""
+                      } />
                 </div>
               </div>
             </div>
@@ -221,18 +227,23 @@ export default class ProductsForm extends Component {
               <div className="col-sm-6">
                 <div className="form-group">
                   <label for="name" className="m-0">Marca <strong className="text-danger">*</strong></label>
-                  <select value={this.state.product.brand.uid} className="form-control form-control-sm"
-                    onChange={this.handleChangeBrand}>
-                    <option value="">Selecciona una opción</option>
-                    {
-                      this.state.brands.length >= 1 ? 
-                      (
-                        this.state.brands.map((brand, i) =>{
-                          return <option value={brand.uid}>{brand.name}</option>
-                        })
-                      ) : null
-                    }
-                  </select>
+                  {
+                    this.state.product.brand ?
+                    (
+                      <select value={this.state.product.brand.uid} className="form-control form-control-sm"
+                        onChange={this.handleChangeBrand}>
+                        <option value="">Selecciona una opción</option>
+                        {
+                          this.state.brands.length >= 1 ? 
+                          (
+                            this.state.brands.map((brand, i) =>{
+                              return <option key={i} value={brand.uid}>{brand.name}</option>
+                            })
+                          ) : null
+                        }
+                      </select>
+                    ) : null
+                  }
                 </div>
               </div>
               
@@ -248,7 +259,9 @@ export default class ProductsForm extends Component {
           </div>
         </div>
 
-        <MultiImages images={this.state.product.images} setImages={this.getImages} />
+        {
+          this.state.viewImages ? (<MultiImages images={this.state.images} setImages={this.getImages} />) : null
+        }
 
       </div>
     )

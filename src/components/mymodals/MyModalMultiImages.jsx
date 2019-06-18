@@ -64,81 +64,74 @@ export default class MultiImages extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-      this.setState({images : nextProps.images})
-  }
-
   componentDidMount() {
+    if(this.props.images && this.props.images.length >= 1) {
       this.setState({images : this.props.images})
+    }else {
+      this.setState({images : []})
+    }
   }
 
   render() {
       return (
-        <div>
-          <div className="modal fade" id="mymodalmultiimages" tabIndex="-1" role="dialog"
-            aria-labelledby="modalConfirm" aria-hidden="true" data-backdrop="static">
-            <div className="modal-dialog modal-sm" role="document">
-              <div className="modal-content">
+        <div className="modal-content" style={{maxWidth:'300px', margin : 'auto'}}>
 
-                <div className="modal-header p-1">
-                  <h5 className="modal-title mr-auto w-100" id="exampleModalLabel">
-                    Imagenes del Producto
-                    <label className="float-right" htmlFor="newImage">
-                      <i className="fas fa-plus"
-                          style={{cursor:'pointer'}}>
-                      </i>
-                    </label>
-                  </h5>
-                </div>
-
-                <div className="modal-body p-2 text-center">
-                  <SimpleBar style={{ height: '200px'}} className="border">
-                    Imagenes Subidas
-                    <div className="content-images-products d-flex flex-inline flex-wrap justify-content-center">
-                      {
-                        this.state.images && this.state.images.length >= 1 ?
-                        (
-                          this.state.images.map((img, i) => {
-                          return <ImagePreview image={img} ids={i} selectImg={this.handleSelectImg} />
-                        })
-                        ) : null
-                      }
-                    </div>
-                  </SimpleBar>
-                </div>
-
-                <div className="modal-body p-1 text-center">
-                  {
-                    this.state.imgSelected ? 
-                    (
-                      <div className="row p-2">
-                        <div className="col-sm-8">
-                          <input type="text" value={this.state.imgSelected.name} className="form-control form-control-sm"/>
-                        </div>
-                        <div className="col-sm-4">
-                          <label htmlFor="changeImage" className="p-1 rounded bg-warning" style={{cursor:'pointer'}}>
-                            Cambiar
-                          </label>
-                        </div>
-                      </div>
-                    ) : <small>Selecciona una imagen para ver su nombre</small>
-                  }
-                </div>
-
-
-                <input id="newImage" type="file" className="form-control form-control-sm d-none" onChange={this.handleNewImage} />
-                <input id="changeImage" type="file" className="form-control form-control-sm d-none" onChange={this.changeImage} />
-
-                <div className="modal-footer p-2">
-                  <button type="button" className="btn btn-block btn-success btn-sm"
-                    data-dismiss="modal" onClick={this.saveImages}>
-                      Aceptar
-                  </button>
-                </div>
-
-              </div>
-            </div>
+          <div className="modal-header p-1">
+            <h5 className="modal-title mr-auto w-100" id="exampleModalLabel">
+              Imagenes del Producto
+              <label className="float-right" htmlFor="newImage">
+                <i className="fas fa-plus"
+                    style={{cursor:'pointer'}}>
+                </i>
+              </label>
+            </h5>
           </div>
+
+          <div className="modal-body p-2 text-center">
+            <SimpleBar style={{ height: '200px'}} className="border">
+              Imagenes Subidas
+              <div className="content-images-products d-flex flex-inline flex-wrap justify-content-center">
+                {
+                  this.state.images && this.state.images.length >= 1 ?
+                  (
+                    this.state.images.map((img, i) => {
+                    return <ImagePreview image={img} ids={i} selectImg={this.handleSelectImg} />
+                  })
+                  ) : null
+                }
+              </div>
+            </SimpleBar>
+          </div>
+
+          <div className="modal-body p-1 text-center">
+            {
+              this.state.imgSelected ? 
+              (
+                <div className="row p-2">
+                  <div className="col-sm-8">
+                    <input type="text" value={this.state.imgSelected.name} className="form-control form-control-sm"/>
+                  </div>
+                  <div className="col-sm-4">
+                    <label htmlFor="changeImage" className="p-1 rounded bg-warning" style={{cursor:'pointer'}}>
+                      Cambiar
+                    </label>
+                  </div>
+                </div>
+              ) : <small>Selecciona una imagen para ver su nombre</small>
+            }
+          </div>
+
+
+          <input id="newImage" type="file" className="form-control form-control-sm d-none" onChange={this.handleNewImage} />
+          <input id="changeImage" type="file" className="form-control form-control-sm d-none" onChange={this.changeImage} />
+
+          <div className="modal-footer p-2">
+            <button type="button" className="btn btn-block btn-success btn-sm"
+              data-dismiss="modal" onClick={this.saveImages}>
+                Aceptar
+            </button>
+          </div>
+
         </div>
       )
   }
