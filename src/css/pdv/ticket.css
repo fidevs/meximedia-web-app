@@ -1,4 +1,6 @@
-
+.modal.fade {
+    width: 300px;
+}
 
 @media print{
     div:not(.ticket_media_print){
