@@ -45,6 +45,10 @@
     margin: 0px;
 }
 
+.ticket {
+    font-family: monospace;
+}
+
 @media print {
     div:not(.ticket) {
         display: none;
