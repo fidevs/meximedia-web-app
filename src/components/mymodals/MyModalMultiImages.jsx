@@ -96,9 +96,12 @@ export default class MultiImages extends Component {
                     Imagenes Subidas
                     <div className="content-images-products d-flex flex-inline flex-wrap justify-content-center">
                       {
-                        this.state.images.map((img, i) => {
+                        this.state.images && this.state.images.length >= 1 ?
+                        (
+                          this.state.images.map((img, i) => {
                           return <ImagePreview image={img} ids={i} selectImg={this.handleSelectImg} />
                         })
+                        ) : null
                       }
                     </div>
                   </SimpleBar>
@@ -146,7 +149,7 @@ function ImagePreview(props) {
   if(props.image.content && props.image.content !== "") {
     return <img
       src={"data:"+props.image.contentType+";base64,"+props.image.content}
-      alt="Image invalide" width="70px" height="70px" className="ml-1" id={props.ids}
+      alt="invalide data" width="70px" height="70px" className="ml-1" id={props.ids}
       style={{objectFit:'contain', cursor:'pointer'}} onClick={props.selectImg} />
   }else {
     return <h5 className="text-center">Imágen no disponible</h5>

@@ -170,7 +170,11 @@ export default class ProductsForm extends Component {
                 <div className="form-group">
                   <label for="name" className="m-0">Nombre <strong className="text-danger">*</strong></label>
                   <input name="name" type="text" className="form-control form-control-sm" id="name"
-                    onChange={this.handleChangeInputs} placeholder="Nombre del producto" value={this.state.product.name} />
+                    onChange={this.handleChangeInputs} placeholder="Nombre del producto"
+                    value={
+                      this.state.product && this.state.product.name !== null ?
+                      (this.state.product.name) : ""
+                    } />
                 </div>
               </div>
               

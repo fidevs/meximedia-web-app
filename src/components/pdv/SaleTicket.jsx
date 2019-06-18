@@ -4,6 +4,9 @@ import { types } from '../../lib/constants'
 
 import '../../css/pdv/ticket.css'
 
+const OPTIONS_DATE = {year: "numeric", month: "numeric",
+  day: "numeric", hour : "2-digit", minute : "2-digit", second : "2-digit"};
+
 export default class SaleTicket extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +14,10 @@ export default class SaleTicket extends Component {
     this.state = {
       sale : null, company : null, address : null, products: []
     }
+  }
+
+  printTicket=()=>{
+    window.print()
   }
 
   getProductName=(id)=>{
@@ -54,11 +61,11 @@ export default class SaleTicket extends Component {
 
   render() {
     return (
-      <div>
-        <div className="modal fade" id="mymodaltocket" tabIndex="-1" role="dialog"
+      <div className="ticket">
+        <div className="modal fade ticket" id="mymodaltocket" tabIndex="-1" role="dialog"
           aria-labelledby="mymodaltocket" aria-hidden="true" data-backdrop="static">
-          <div className="modal-dialog modal-sm" role="document">
-            <div className="modal-content p-1">
+          <div className="modal-dialog ticket" role="document">
+            <div className="modal-content p-1 ticket">
 
               <small className="d-block">
                 Ticket de compra
@@ -67,22 +74,26 @@ export default class SaleTicket extends Component {
                 </div>
               </small>
 
-              <p className="text-center m-0">
+              <p className="text-center m-0 t_company_name">
                 {
                   this.state.company ? this.state.company.name : "Nombre de compañia:"
                 }
               </p>
 
-              <p className="text-center m-0"><small>
+              <p className="text-center m-0 t_address_company"><small>
               {
                 this.state.address ? 
                 (this.state.address.cityHall+", "+this.state.address.suburb) : "Dirección:"
               }
               </small></p>
 
-              <p><small>Fecha: {this.state.sale ? this.state.sale.dateCreate : ""}</small></p>
+              <p className="t_sale_date"><small className="t_sale_date_sm">{this.state.sale ? 
+                (
+                  new Date(this.state.sale.dateCreate).toLocaleString("es-ES", OPTIONS_DATE)
+                ) : ""}
+              </small></p>
 
-              <table className="table table-sm table-borderless">
+              <table className="table table-sm table-borderless t_sale_table">
 
                 <thead>
                   <tr>
@@ -100,22 +111,22 @@ export default class SaleTicket extends Component {
                       this.state.sale.saleDetail.map((d, i)=>{
                         return(
                           <tr>
-                            <th>{d.quantity}</th>
-                            <th>
+                            <th className="t_table_quantity">{d.quantity}</th>
+                            <th className="t_table_product">
                               <small>
                                 {
                                   this.getProductName(d.productUid)
                                 }
                               </small>
                             </th>
-                            <th>
+                            <th className="t_table_price">
                               <small>
                                 {
                                   this.getProductPrice(d.productUid)
                                 }
                               </small>
                             </th>
-                            <th>
+                            <th className="t_table_import">
                               <small>
                                 {
                                   parseFloat(this.getProductPrice(d.productUid))*d.quantity
@@ -130,18 +141,24 @@ export default class SaleTicket extends Component {
                   <tr>
                     <th></th>
                     <th></th>
-                    <th>
-                      <small>
-                        Total: {this.state.sale ? "$"+this.state.sale.total : "$"}
+                    <th colspan="2">
+                      <small className="t_table_total">
+                        <strong>Total: {this.state.sale ? "$"+this.state.sale.total : "$"}</strong>
                       </small>
                     </th>
-                    <th></th>
                   </tr>
                 </tbody>
 
               </table>
 
-              <p className="text-center"><small>Gracias por su compra</small></p>
+              <p className="text-center t_footer"><small>Gracias por su compra</small></p>
+
+              <div>
+                <button type="button" className="btn btn-sm btn-block bg-secondary text-white m-0 mt-1 p-0"
+                  onClick={this.printTicket}>
+                    Imprimir
+                </button>
+              </div>
             </div>
           </div>
         </div>

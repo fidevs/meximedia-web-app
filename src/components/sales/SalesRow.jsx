@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import SimpleBar from 'simplebar-react'
 import SaleDetail from './SaleDetail'
 
 import { findById } from '../../services/my-api'
 import { types } from '../../lib/constants'
 
-const OPTIONS_DATE = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+const OPTIONS_DATE = {weekday: "long", year: "numeric", month: "long",
+  day: "numeric", hour : "2-digit", minute : "2-digit", second : "2-digit"};
 
 export default class SalesRow extends Component {
   constructor(props) {
