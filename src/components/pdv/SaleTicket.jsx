@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { findById, findAll } from '../../services/my-api'
 import { types } from '../../lib/constants'
+
 import '../../css/pdv/ticket.css'
+
+const OPTIONS_DATE = {year : "numeric", month : "numeric",
+  day : "numeric", hour : "2-digit", minute : "2-digit", second : "2-digit"};
 
 export default class SaleTicket extends Component {
   constructor(props) {
@@ -10,6 +14,10 @@ export default class SaleTicket extends Component {
     this.state = {
       sale : null, company : null, address : null, products: []
     }
+  }
+
+  printTicket=()=>{
+    window.print()
   }
 
   getProductName=(id)=>{
@@ -60,41 +68,41 @@ export default class SaleTicket extends Component {
 
   render() {
     return (
-      <div className="ticket_media_print">
-        <div className="modal fade ticket_media_print" id="mymodaltocket" tabIndex="-1" role="dialog"
+      <div className="ticket">
+        <div className="modal fade ticket" id="mymodaltocket" tabIndex="-1" role="dialog"
           aria-labelledby="mymodaltocket" aria-hidden="true" data-backdrop="static">
-          <div className="modal-dialog modal-sm ticket_media_print m-0" role="document">
-            <div className="modal-content p-1 ticket_media_print">
+          <div className="modal-dialog ticket" role="document">
+            <div className="modal-content p-1 ticket">
 
-              <small className="d-block ticket_media_print">
+              <small className="d-block">
                 Ticket de compra
                 <div className="float-right text-danger">
-                  <strong style={{cursor:'pointer'}} onClick={this.props.close}>
-                    X
-                  </strong>
+                  <strong style={{cursor:'pointer'}} onClick={this.props.close}>X</strong>
                 </div>
               </small>
 
-              <p className="text-center m-0 ticket_media_print">
+              <p className="text-center m-0 t_company_name">
                 {
                   this.state.company ? this.state.company.name : "Nombre de compañia:"
                 }
               </p>
 
-              <p className="text-center m-0 ticket_media_print"><small>
+              <p className="text-center m-0 t_address_company"><small>
               {
                 this.state.address ? 
                 (this.state.address.cityHall+", "+this.state.address.suburb) : "Dirección:"
               }
               </small></p>
 
-              <p className="ticket_media_print">
-                <small className="ticket_media_print">
-                  Fecha: {this.state.sale ? this.state.sale.dateCreate : ""}
-                </small>
-              </p>
+              <p className="t_sale_date">
+                <small className="t_sale_date_sm">{this.state.sale ?
+                (
+                  new Date(this.state.sale.dateCreate).toLocaleString("es-ES", OPTIONS_DATE)
+                ) : ""
+                }
+              </small></p>
 
-              <table className="table table-sm table-borderless ticket_media_print">
+              <table className="table table-sm table-borderless t_sale_table">
 
                 <thead className="ticket_media_print">
                   <tr className="ticket_media_print">
@@ -111,23 +119,23 @@ export default class SaleTicket extends Component {
                     (
                       this.state.sale.saleDetail.map((d, i)=>{
                         return(
-                          <tr className="ticket_media_print">
-                            <th className="ticket_media_print">{d.quantity}</th>
-                            <th className="ticket_media_print">
+                          <tr>
+                            <th className="t_table_quantity">{d.quantity}</th>
+                            <th className="t_table_product">
                               <small>
                                 {
                                   this.getProductName(d.productUid)
                                 }
                               </small>
                             </th>
-                            <th className="ticket_media_print">
+                            <th className="t_table_price">
                               <small>
                                 {
                                   this.getProductPrice(d.productUid)
                                 }
                               </small>
                             </th>
-                            <th className="ticket_media_print">
+                            <th className="t_table_import">
                               <small>
                                 {
                                   parseFloat(this.getProductPrice(d.productUid))*d.quantity
@@ -142,8 +150,8 @@ export default class SaleTicket extends Component {
                   <tr>
                     <th className="ticket_media_print"></th>
                     <th className="ticket_media_print"></th>
-                    <th className="ticket_media_print">
-                      <small>
+                    <th colSpan="2">
+                      <small className="t_table_total">
                         Total: {this.state.sale ? "$"+this.state.sale.total : "$"}
                       </small>
                     </th>
@@ -153,8 +161,14 @@ export default class SaleTicket extends Component {
 
               </table>
 
-              <p className="text-center ticket_media_print"><small>Gracias por su compra</small></p>
-              <button onClick={this.printicket} className="btnPRINT">Imprimir</button>
+              <p className="text-center t_footer"><small>Gracias por su compra</small></p>
+              
+              <div>
+                <button type="button" className="btn-btn-sm btn-block bg-secondary text-white m-0 mt-1 p-0"
+                  onClick={this.printTicket}>
+                    Imprimir
+                </button>
+              </div>
             </div>
           </div>
         </div>

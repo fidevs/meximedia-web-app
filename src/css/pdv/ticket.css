@@ -1,12 +1,62 @@
-.modal.fade {
-    width: 300px;
+.t_company_name {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 1.2;
 }
 
-@media print{
-    div:not(.ticket_media_print){
-        display: none !important;
-    }
-    .btnPRINT {
+.t_address_company {
+    line-height: 1.3;
+}
+
+.t_sale_date {
+    margin: 0;
+    line-height: 1;
+    text-align: end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.t_sale_table thead tr th{
+    padding: 0px;
+}
+
+.t_sale_table tbody tr th {
+    padding: 0px;
+    line-height: 2;
+}
+
+.t_sale_table tbody {
+    font-size: 15px;
+}
+
+.t_table_quantity {
+    font-size: 14px;
+}
+
+.t_table_total {
+    text-align: end;
+    font-weight: normal;
+}
+
+.t_footer {
+    line-height: 1;
+    margin: 0px;
+}
+
+@media print {
+    div:not(.ticket) {
         display: none;
+    }
+
+    #mymodaltocket .modal-dialog.ticket {
+        margin: 0px;
+        height: auto;
+    }
+    
+    .modal.fade.ticket {
+        height: auto;
+        max-width: 300px;
     }
 }

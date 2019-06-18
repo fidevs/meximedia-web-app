@@ -97,7 +97,8 @@ export default class MultiImages extends Component {
                   Imagenes Subidas
                   <div className="content-images-products d-flex flex-inline flex-wrap justify-content-center">
                     {
-                      this.state.images && this.state.images.length >= 1 ? (
+                      this.state.images && this.state.images.length >= 1 ?
+                      (
                         this.state.images.map((img, i) => {
                           return <ImagePreview image={img} ids={i} selectImg={this.handleSelectImg} />
                         })
