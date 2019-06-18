@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { findById, findAll } from '../../services/my-api'
 import { types } from '../../lib/constants'
 
+import '../../css/pdv/ticket.css'
+
 export default class SaleTicket extends Component {
   constructor(props) {
     super(props)
