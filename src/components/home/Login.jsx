@@ -17,6 +17,11 @@ export default class Login extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(e) {
+    e.key === "Enter" && this.login()
   }
 
   handleChange(e) {
@@ -69,7 +74,7 @@ export default class Login extends Component {
               className="form-control form-control-sm mb-2" type="text"/>
             <label className="text-white p-0 m-0" htmlFor="password"><small>Contraseña</small></label>
             <input type="password" value={this.state.password} onChange={this.handleChange}
-              name="password" className="form-control form-control-sm"/>
+              name="password" className="form-control form-control-sm" onKeyPress={this.handleSubmit}/>
           </div>
           <div className="buttons mt-3 d-flex justify-content-end">
             <button type="button" className="btn btn-danger">Cancelar</button>
