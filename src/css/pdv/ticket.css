@@ -58,13 +58,10 @@
     .modal.fade.ticket {
         height: auto;
         max-width: 300px;
+        position: absolute;
     }
 
     .ticket {
         font-family: monospace;
-    }
-
-    .ticket {
-        position: absolute;
     }
 }
