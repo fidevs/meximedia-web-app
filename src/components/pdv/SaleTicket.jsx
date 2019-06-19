@@ -64,7 +64,7 @@ export default class SaleTicket extends Component {
       <div className="ticket">
         <div className="modal fade ticket" id="mymodaltocket" tabIndex="-1" role="dialog"
           aria-labelledby="mymodaltocket" aria-hidden="true" data-backdrop="static">
-          <div className="modal-dialog ticket" role="document">
+          <div className="modal-dialog ticket ticket_container" role="document">
             <div className="modal-content p-1 ticket">
 
               <small className="d-block">
