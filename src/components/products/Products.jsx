@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ListProducts from './ListProducts'
 import ProductForm from './ProductsForm'
 import NavBarConfigs from '../NavBarConfigs'
-import { types } from '../../lib/constants'
+import { types, WID } from '../../lib/constants'
 import { findAll } from '../../services/my-api'
 import $ from 'jquery'
 import ModalConfirm from '../mymodals/ModalConfirm'
@@ -12,7 +12,7 @@ export default class Products extends Component {
     super(props)
 
     this.state = {
-      textNav : "Todos los productos", companyid : null, wareid : "897e7772-38b7-4c6c-b453-3da9eb209de7", view : "list",
+      textNav : "Todos los productos", companyid : null, wareid : WID, view : "list",
       products : [], productSel : null, idProd : null, filter : "name"
     }
 

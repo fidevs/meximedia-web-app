@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SimpleBar from 'simplebar-react'
 
 import { findById } from '../../services/my-api'
-import { types } from '../../lib/constants'
+import { types, CID, WID } from '../../lib/constants'
 
 export default class SaleDetail extends Component {
   constructor(props) {
@@ -14,8 +14,8 @@ export default class SaleDetail extends Component {
   }
 
   componentDidMount() {
-    let type = types.PRODUCTS.replace("$X", "b6a68ee9-0d3e-4561-8bd4-0211ea2c5672")
-    type = type.replace("$Z", "897e7772-38b7-4c6c-b453-3da9eb209de7")
+    let type = types.PRODUCTS.replace("$X", CID)
+    type = type.replace("$Z", WID)
     this.props.details.forEach(detail => {
       findById(type, detail.productUid).then(res =>{
         let {detail} = this.state

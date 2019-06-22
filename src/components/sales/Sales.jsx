@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import SimpleBar from 'simplebar-react'
 import SalesRow from './SalesRow'
 
-import { findAll, findById } from '../../services/my-api'
+import { findAll } from '../../services/my-api'
 import { types } from '../../lib/constants'
 
 const OPTIONS_DATE = {weekday: "long", year: "numeric", month: "long", day: "numeric"};

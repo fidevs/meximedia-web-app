@@ -71,7 +71,7 @@ export default function ListProducts(props) {
                         (
                           <img
                             src={"data:"+p.images[0].contentType+";base64,"+p.images[0].content}
-                            alt="Image invalide" width="50px" height="50px"
+                            alt="invalid data" width="50px" height="50px"
                             style={{objectFit:'contain'}} />
                         ) : <small>No image</small>
                       }

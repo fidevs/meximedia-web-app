@@ -99,7 +99,8 @@ export default class MyModalCompanyImage extends Component {
                     Cargar Imágen
                   </h6>
                 </label>
-                <input id="upImageCompany" type="file" className="form-control form-control-sm d-none" onChange={this.handleChangeImage} />
+                <input id="upImageCompany" type="file" className="d-none" onChange={this.handleChangeImage}
+                  accept="image/png, .jpeg, .jpg, image/gif" />
               </div>
               
               {/*--------------FOOTER--------------*/}
@@ -118,7 +119,7 @@ function ImagePreview(props) {
   if(props.image.content && props.image.content !== "") {
     return <img
       src={"data:"+props.image.contentType+";base64,"+props.image.content}
-      alt="Image invalide" width="290px" height="140px" className="m-auto" style={{objectFit:'contain'}} />
+      alt="invalid data" width="290px" height="140px" className="m-auto" style={{objectFit:'contain'}} />
   }else {
     return <h1 className="text-center">Imágen no disponible</h1>
   }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import SimpleBar from 'simplebar-react'
 import Sidebar from '../components/Sidebar'
 import PDVForm from '../components/pdv/PDVForm'
 import Products from '../components/products/Products'
 import Sales from '../components/sales/Sales'
-import { Redirect } from 'react-router-dom'
+import Profile from '../components/profile/Profile'
 
+import { Redirect, Route } from 'react-router-dom'
 import { findById } from '../services/my-api'
-import { types } from '../lib/constants'
+import { types, WID } from '../lib/constants'
 
 import '../css/pdv/pdv.css'
 
@@ -16,7 +16,7 @@ export default class PDV extends Component {
     super(props)
 
     this.state = {
-      wsize : "", companyid : null, username : "", role : "", companyName : "", view : "pdv", ware : "897e7772-38b7-4c6c-b453-3da9eb209de7"
+      wsize : "", companyid : null, username : "", role : "", companyName : "", view : "profile", ware : WID
     }
 
     this.handleDisplaySize = this.handleDisplaySize.bind(this)
@@ -59,28 +59,33 @@ export default class PDV extends Component {
   
 
   render() {
-    if(!localStorage.getItem("user")) {
+    if(!localStorage.getItem("user"))
       return <Redirect to="/index/login"/>
-    }
+
     if(this.state.companyid){
+      const {view} = this.state
       return (
         <div className="d-flex">
           <Sidebar handleActive={this.handleDisplaySize} username={this.state.username} role={this.state.role}
             changeMenu={this.handleChangeMenu} />
-          <SimpleBar className="display-main-pdv flex-fill" style={{maxWidth:+this.state.wsize+"px"}}>
+
+          <div className="display-main-pdv flex-fill" style={{maxWidth:+this.state.wsize+"px"}}>
             {
-              this.state.view === "pdv" ?
+              view === "pdv" ?
               (
                 <PDVForm company={this.state.companyid} ware={this.state.ware} />
-              ) : this.state.view === "stock" ?
+              ) : view === "stock" ?
               (
                 <Products title={this.state.companyName} company={this.state.companyid} ware={this.state.ware} /> 
-              ) : this.state.view === "crop" ?
+              ) : view === "crop" ?
               (
                 <Sales company={this.state.companyid} />
+              ) : view === "profile" ?
+              (
+                <Profile />
               ) : null
             }
-          </SimpleBar>
+          </div>
         </div>
       )
     }else {

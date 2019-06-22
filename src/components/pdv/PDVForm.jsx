@@ -8,11 +8,11 @@ import $ from 'jquery'
 import SaleTicket from './SaleTicket'
 
 import { findAll, findById, create } from '../../services/my-api'
-import { types } from '../../lib/constants'
+import { types, CREATEDBY, CID, CAID, CUSTID } from '../../lib/constants'
 
 import '../../css/pdv/list_products.css'
 
-const NEW_HISTORY = {uid:null, dateCreated:null, createdBy:"5ffd38a6-5512-4fd9-9470-0210be711a2b", description:"New Sale"}
+const NEW_HISTORY = {uid:null, dateCreated:null, createdBy:CREATEDBY, description:"New Sale"}
 
 export default class PDVForm extends Component {
   constructor(props){
@@ -20,11 +20,9 @@ export default class PDVForm extends Component {
 
     this.state = {products:[], filter : "", productSel : null, detailToEdit : null, action : "new", viewBtn : "d-none",
       sale : {
-        uid:null, dateCreate:"", createdBy:"5ffd38a6-5512-4fd9-9470-0210be711a2b", partialAmount:0, discount:0, total:0,
-        totalTaxes:0, totalRetentions:0, totalLocalTaxes:0, totalLocalRetentions:0, isInvoiced:false,
-        state:"Vendida", tenantUid:"b6a68ee9-0d3e-4561-8bd4-0211ea2c5672", companyAddressUid:"783a807b-b1ed-4fc9-a903-40dc3703cbce",
-        customerUid:"user-uid-customer",
-        saleDetail:[], saleHistory:[]
+        uid:null, dateCreate:"", createdBy:CREATEDBY, partialAmount:0, discount:0, total:0, totalTaxes:0,
+        totalRetentions:0, totalLocalTaxes:0, totalLocalRetentions:0, isInvoiced:false, state:"Vendida",
+        tenantUid:CID, companyAddressUid:CAID,customerUid:CUSTID, saleDetail:[], saleHistory:[]
       }, stateSale : "waiting", total : 0, saleTicket : null
     }
     

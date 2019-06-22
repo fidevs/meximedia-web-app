@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { findById, findAll } from '../../services/my-api'
-import { types } from '../../lib/constants'
+import { types, CID, WID, CAID } from '../../lib/constants'
 
 import '../../css/pdv/ticket.css'
 import Axios from 'axios';
@@ -38,12 +38,12 @@ export default class SaleTicket extends Component {
   getExtraData=(sale)=>{
     this.setState({progress : 70})
 
-    let type = types.PRODUCTS.replace("$X", "b6a68ee9-0d3e-4561-8bd4-0211ea2c5672")
-    type = type.replace("$Z", "897e7772-38b7-4c6c-b453-3da9eb209de7")
+    let type = types.PRODUCTS.replace("$X", CID)
+    type = type.replace("$Z", WID)
 
     let promises = []
     promises.push(findById(types.COMPANIES, sale.tenantUid))
-    promises.push(findById(types.COMPANY_ADDRESS.replace("$X", sale.tenantUid), "964c9ccc-5795-468d-976a-8507a55058a7"))
+    promises.push(findById(types.COMPANY_ADDRESS.replace("$X", sale.tenantUid), CAID))
 
     Axios.all(promises).then(res => {
       this.setState({

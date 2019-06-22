@@ -36,7 +36,8 @@ export default class Sidebar extends Component {
 
         <div className="sidebar-header d-flex flex-inline flex-nowrap mb-2">
           <div className="img-profile mr-2">
-            <img src="https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png" width={this.state.size_img} alt="image" className="rounded-circle my-auto"
+            <img src="https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png" width={this.state.size_img}
+              alt="profile avatar" className="rounded-circle my-auto" onClick={this.props.changeMenu} id="profile"
               style={{objectFit:'contain', cursor:'pointer'}}/>
           </div>
           <div className="data-profile">
