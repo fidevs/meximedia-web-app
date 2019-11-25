@@ -23,7 +23,7 @@ export default function ProfileDetails(props) {
         </div>
         <div className="row w-100 m-0 mt-3">
           <label><strong style={{fontSize:'15px', lineHeight:1}}>Teléfono Celular:</strong></label>
-          <input id="profile" name="cellPhone" type="text" className="w-100 input_avatar" placeholder="Número de telefono celular" 
+          <input id="profile" name="mobilePhone" type="text" className="w-100 input_avatar" placeholder="Número de telefono celular" 
             value={ exist ? props.detail.mobilePhone : "" } onChange={props.change}
           />
         </div>
@@ -37,4 +37,3 @@ export default function ProfileDetails(props) {
     </div>
   )
 }
-

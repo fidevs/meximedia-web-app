@@ -1,33 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import SimpleBar from 'simplebar-react'
 
 import '../../css/profile/profile_address.css'
 
-export default class ProfileAddress extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
-  
-  render() {
-    return (
-      <div className="profile-address border rounded bg-light mb-2" style={{width:'320px'}}>
-        <div className="title_details text-center rounded-top bg-secondary text-white">
-          Direcciones registradas
-        </div>
-        <SimpleBar className="container_address p-2" style={{maxHeight:'300px', maxWidth:'315px'}}>
-          {
-            this.props.address && this.props.address.map((item, i) => {
-              return(
-                <Address adrs={item} change={this.props.change} idx={i}
-                  changeCheckActive={this.props.changeCheckActive} changeCheckDefault={this.props.changeCheckDefault} />
-              )
-            })
-          }
-        </SimpleBar>
+export default function ProfileAddress(props) {
+  return (
+    <div className="profile-address border rounded bg-light mb-2" style={{width:'320px'}}>
+      <div className="title_details text-center rounded-top bg-secondary text-white">
+        Direcciones registradas
+        <i className="fas fa-plus float-right mr-2 mt-1" style={{cursor:'pointer'}}
+          onClick={props.addAddress}></i>
       </div>
-    )
-  }
+      <SimpleBar className="container_address p-2" style={{maxHeight:'300px', maxWidth:'320px'}}>
+        {
+          props.address && props.address.map((item, i) => {
+            return(
+              <Address adrs={item} change={props.change} idx={i}
+                changeCheckActive={props.changeCheckActive} changeCheckDefault={props.changeCheckDefault}
+                delete={props.delete} />
+            )
+          })
+        }
+      </SimpleBar>
+    </div>
+  )
 }
 
 const COUNTRIES = ["", "MEX", "USA", "CAN",]
@@ -39,8 +35,10 @@ function Address(props) {
   
       <div className="mb-2">
         Calle:
-        <input id={props.idx} name="street" type="text" className="input_address_profile w-75 float-right" style={{height:'23px'}}
+        <input id={props.idx} name="street" type="text" className="input_address_profile w-75 ml-2" style={{height:'23px'}}
           placeholder="Nombre de la calle" value={props.adrs.street} onChange={props.change} />
+        <i id={props.idx} className="fas fa-trash-alt ml-2 text-danger" style={{cursor:'pointer'}}
+          onClick={props.delete}></i>
       </div>
 
       <div className="mb-4">

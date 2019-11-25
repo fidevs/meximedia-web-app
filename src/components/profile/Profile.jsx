@@ -14,14 +14,30 @@ export default class Profile extends Component {
     super(props);
     
     this.state = {
-      user : null, profile : "", address : [],
-      role : "Cargando...", dOptions : 'd-none', success : false, fail : false
+      user : null, role : "Cargando...", dOptions : 'd-none', success : false, fail : false
     }
     
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeCheckActive = this.handleChangeCheckActive.bind(this)
     this.handleChangeCheckDefault = this.handleChangeCheckDefault.bind(this)
     this.handleUploadProfileImage = this.handleUploadProfileImage.bind(this)
+    this.handleDeleteAddress = this.handleDeleteAddress.bind(this)
+  }
+
+  handleDeleteAddress(e) {
+    console.log("Eliminar ->" +e.target.id)
+    const { user } = this.state
+    user.addressList.splice(e.target.id, 1)
+    this.setState({ user : user })
+  }
+
+  handleAddAddress = () => {
+    const { user } = this.state
+    user.addressList.unshift({
+      id:null, zipCode:"", active:false, city:"", countryCode:"",
+      externalNumber:"", governmentCode:"", internalNumber:"", isDefault:false, street:""
+    })
+    this.setState({ user : user, dOptions : 'd-block' })
   }
 
   saveChanges = () => {
@@ -64,10 +80,13 @@ export default class Profile extends Component {
     this.setState({user : user, dOptions : 'd-block'})
   }
 
+  
+
   handleChangeCheckDefault(e) {
     const { id } = e.target
     let user = this.state.user
     let value = user.addressList[id].isDefault ? false : true
+    value && this.handleAddAddress()
     user.addressList[id].isDefault = value
     this.setState({user : user, dOptions : 'd-block'})
   }
@@ -92,22 +111,20 @@ export default class Profile extends Component {
   }
 
   getRole = uid => {
-    findById(types.ROLES, uid).then(res => {
-      let user = res.data
-      // !res.data.profile && user
+    findById(types.ROLES, uid).then(res => {      
       this.setState({role : res.data.name})
     })
   }
 
   getUser = () => {
     const id = localStorage.getItem("user")
-    findById(types.USERS, id).then(res => {
+    findById(types.USERS, id).then(res => {      
       this.setState({user : res.data})
       this.getRole(res.data.userRoleId)
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getUser()
   }
   
@@ -182,7 +199,8 @@ export default class Profile extends Component {
             <ProfileDetails detail={user.profile} change={this.handleChange} />
 
             <ProfileAddress address={user.addressList} change={this.handleChange} changeCheckActive={this.handleChangeCheckActive}
-              changeCheckDefault={this.handleChangeCheckDefault} />
+              changeCheckDefault={this.handleChangeCheckDefault} addAddress={this.handleAddAddress}
+              delete={this.handleDeleteAddress} />
 
             <ModalChangePass setNewPass={this.getNewPass} />
           </div>

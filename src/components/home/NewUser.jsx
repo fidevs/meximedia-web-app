@@ -67,7 +67,9 @@ export default class NewUser extends Component {
     create(types.USERS, userApp).then(res => {
       console.log(res.data)
       this.props.history.push('/index/login')
-    }).catch(err => console.log(err))
+    }).catch(err =>{
+      console.log(err.response)
+    })
   }
 
   handleInputChange(event) {

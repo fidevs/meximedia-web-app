@@ -145,6 +145,6 @@ function ImagePreview(props) {
       alt="invalide data" width="70px" height="70px" className="ml-1" id={props.ids}
       style={{objectFit:'contain', cursor:'pointer'}} onClick={props.selectImg} />
   }else {
-    return <h5 className="text-center">Imágen no disponible</h5>
+    return <small className="text-center">Imágen no disponible</small>
   }
 }

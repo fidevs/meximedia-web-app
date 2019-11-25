@@ -6,7 +6,7 @@ import SalesRow from './SalesRow'
 import { findAll } from '../../services/my-api'
 import { types } from '../../lib/constants'
 
-const OPTIONS_DATE = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+const OPTIONS_DATE = {weekday: "long", year: "numeric", month: "long", day: "numeric"}
 
 export default class Sales extends Component {
   constructor(props) {
